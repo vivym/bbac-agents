@@ -6,13 +6,25 @@ interface AgentListProps {
   agents: Agent[]
   selectedAgent: Agent | null
   onSelectAgent: (agent: Agent) => void
+  onRefresh?: () => void
 }
 
-export default function AgentList({ agents, selectedAgent, onSelectAgent }: AgentListProps) {
+export default function AgentList({ agents, selectedAgent, onSelectAgent, onRefresh }: AgentListProps) {
   return (
     <div className="w-80 bg-gray-50 border-r border-gray-200 h-screen overflow-y-auto">
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Chat Agents</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-gray-800">Chat Agents</h2>
+          {onRefresh && (
+            <button
+              onClick={onRefresh}
+              className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              title="刷新配置"
+            >
+              🔄
+            </button>
+          )}
+        </div>
         <div className="space-y-2">
           {agents.map((agent, index) => (
             <button

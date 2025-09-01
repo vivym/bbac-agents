@@ -1,12 +1,12 @@
-import { getAgents } from '@/actions/agents'
 import ChatContainer from '@/components/ChatContainer'
 
-export default async function HomePage() {
-  const agents = await getAgents()
+// 强制动态渲染，禁用静态生成
+export const dynamic = 'force-dynamic'
 
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-white">
-      <ChatContainer initialAgents={agents} />
+      <ChatContainer />
     </div>
   )
 }
